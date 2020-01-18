@@ -80,6 +80,7 @@ public class GameLiftServerSDK : ModuleRules
                 }
                 else if (Target.Platform == UnrealTargetPlatform.Win64)
                 {
+                    PublicDefinitions.Add("USE_IMPORT_EXPORT");
                     PublicLibraryPaths.Add(SDKDirectory);
                     PublicAdditionalLibraries.Add(System.IO.Path.Combine(SDKDirectory, "aws-cpp-sdk-gamelift-server.lib"));
                     PublicDelayLoadDLLs.Add("aws-cpp-sdk-gamelift-server.dll");
