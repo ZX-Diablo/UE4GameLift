@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ModuleManager.h"
+#include "Modules/ModuleManager.h"
 
 #include "aws/core/Aws.h"
 #include "aws/core/auth/AWSCredentialsProvider.h"

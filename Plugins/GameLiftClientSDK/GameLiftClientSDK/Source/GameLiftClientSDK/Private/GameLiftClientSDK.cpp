@@ -3,8 +3,8 @@
 #include "GameLiftClientSDK.h"
 #include "GameLiftClientGlobals.h"
 #include "Core.h"
-#include "ModuleManager.h"
-#include "IPluginManager.h"
+#include "Modules/ModuleManager.h"
+#include "Interfaces/IPluginManager.h"
 
 #define LOCTEXT_NAMESPACE "FGameLiftClientSDKModule"
 

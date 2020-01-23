@@ -11,7 +11,7 @@ public class CognitoIdentity : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject", "InputCore", "Projects" });
 		
 		// This is required to fix a warning for Unreal Engine 4.21 and later
-        PrivatePCHHeaderFile = "Private/CognitoIdentityPrivatePCH.h";
+        PrivatePCHHeaderFile = "Private/CognitoIdentityModulePrivatePCH.h";
 
 		string BaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(ModuleDirectory, "..", ".."));
         string ThirdPartyPath = System.IO.Path.Combine(BaseDirectory, "ThirdParty", "GameLiftClientSDK", Target.Platform.ToString());
@@ -19,7 +19,7 @@ public class CognitoIdentity : ModuleRules
 
 		if (bIsThirdPartyPathValid)
 		{
-            if (Target.Type == TargetRules.TargetType.Client)
+            if (true)
             {
                 PublicDefinitions.Add("WITH_COGNITOIDENTITY=1");
                 //PublicLibraryPaths.Add(ThirdPartyPath);

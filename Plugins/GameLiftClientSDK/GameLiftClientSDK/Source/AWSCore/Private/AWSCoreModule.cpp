@@ -1,7 +1,6 @@
-#include "AWSCoreModulePrivatePCH.h"
 #include "AWSCoreModule.h"
 #include "GameLiftClientSDK/Public/GameLiftClientGlobals.h"
-#include "IPluginManager.h"
+#include "Interfaces/IPluginManager.h"
 
 #define LOCTEXT_NAMESPACE "FAWSCoreModule"
 
@@ -34,18 +33,6 @@ void FAWSCoreModule::StartupModule()
 		return;
 	}
 
-	static const FString EventStreamDLLName = "aws-c-event-stream";
-	const bool bEventStreamDependencyLoaded = LoadDependency(ThirdPartyDir, EventStreamDLLName, AWSEventStreamLibraryHandle);
-
-	if (bEventStreamDependencyLoaded == false)
-	{
-		FFormatNamedArguments Arguments;
-		Arguments.Add(TEXT("Name"), FText::FromString(EventStreamDLLName));
-		FMessageDialog::Open(EAppMsgType::Ok, FText::Format(LOCTEXT("LoadDependencyError", "Failed to load {Name}. Plugin will not be functional"), Arguments));
-		FreeDependency(AWSEventStreamLibraryHandle);
-		return;
-	}
-
 	static const FString ChecksumsDLLName = "aws-checksums";
 	const bool bChecksumsDependencyLoaded = LoadDependency(ThirdPartyDir, ChecksumsDLLName, AWSChecksumsLibraryHandle);
 
@@ -55,6 +42,18 @@ void FAWSCoreModule::StartupModule()
 		Arguments.Add(TEXT("Name"), FText::FromString(ChecksumsDLLName));
 		FMessageDialog::Open(EAppMsgType::Ok, FText::Format(LOCTEXT("LoadDependencyError", "Failed to load {Name}. Plugin will not be functional"), Arguments));
 		FreeDependency(AWSChecksumsLibraryHandle);
+		return;
+	}
+
+	static const FString EventStreamDLLName = "aws-c-event-stream";
+	const bool bEventStreamDependencyLoaded = LoadDependency(ThirdPartyDir, EventStreamDLLName, AWSEventStreamLibraryHandle);
+
+	if (bEventStreamDependencyLoaded == false)
+	{
+		FFormatNamedArguments Arguments;
+		Arguments.Add(TEXT("Name"), FText::FromString(EventStreamDLLName));
+		FMessageDialog::Open(EAppMsgType::Ok, FText::Format(LOCTEXT("LoadDependencyError", "Failed to load {Name}. Plugin will not be functional"), Arguments));
+		FreeDependency(AWSEventStreamLibraryHandle);
 		return;
 	}
 

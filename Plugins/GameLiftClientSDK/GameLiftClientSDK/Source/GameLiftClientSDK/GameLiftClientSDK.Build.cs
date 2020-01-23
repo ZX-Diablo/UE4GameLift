@@ -25,7 +25,7 @@ public class GameLiftClientSDK : ModuleRules
 
         if (bIsThirdPartyPathValid)
         {
-            if (Target.Type == TargetRules.TargetType.Client)
+            if (true)
             {
                 if (!Directory.Exists(BinariesDirectory))
                 {
