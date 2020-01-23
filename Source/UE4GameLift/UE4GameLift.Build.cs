@@ -13,6 +13,7 @@ public class UE4GameLift : ModuleRules
 			"Core",
 			"CoreUObject",
 			"Engine",
+			"GameLiftClientSDK",
 			"GameLiftServerSDK",
 			"HeadMountedDisplay",
 			"InputCore"
