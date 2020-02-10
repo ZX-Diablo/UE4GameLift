@@ -6,7 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "UE4GameLiftGameMode.generated.h"
 
-UCLASS(minimalapi)
+UCLASS(MinimalAPI)
 class AUE4GameLiftGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
@@ -14,6 +14,3 @@ class AUE4GameLiftGameMode : public AGameModeBase
 public:
 	AUE4GameLiftGameMode();
 };
-
-
-
