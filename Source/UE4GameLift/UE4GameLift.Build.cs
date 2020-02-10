@@ -15,7 +15,6 @@ public class UE4GameLift : ModuleRules
 			"Engine",
 			"GameLiftClientSDK",
 			"GameLiftServerSDK",
-			"HeadMountedDisplay",
 			"InputCore"
 		});
 	}
