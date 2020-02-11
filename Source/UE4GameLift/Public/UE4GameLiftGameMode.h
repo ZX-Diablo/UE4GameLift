@@ -13,4 +13,28 @@ class AUE4GameLiftGameMode : public AGameModeBase
 
 public:
 	AUE4GameLiftGameMode();
+
+	/**
+	 * Validate player session
+	 * @see UServer::AcceptPlayerSession
+	 */
+	virtual void PreLogin(const FString& Options, const FString& Address, const FUniqueNetIdRepl& UniqueId, FString& ErrorMessage) override;
+
+	/**
+	 * Remove player session and shutdown game session if there're no players left
+	 * @see UServer::RemovePlayerSession, UServer::TerminateGameSession
+	 */
+	virtual void Logout(AController* Exiting) override;
+
+protected:
+	/**
+	 * Setup player state (set player session ID)
+	 */
+	virtual FString InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal = TEXT("")) override;
+
+	/**
+	 * Start dedicated server
+	 * @see UServer::Start
+	 */
+	virtual void BeginPlay() override;
 };
