@@ -5,6 +5,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "Kismet/GameplayStatics.h"
 
+#include "Client.h"
 #include "MyGameInstance.h"
 #include "MyPlayerState.h"
 #include "Server.h"
@@ -100,6 +101,16 @@ FString AUE4GameLiftGameMode::InitNewPlayer(APlayerController* NewPlayerControll
 void AUE4GameLiftGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+
+#if !UE_SERVER
+	if (auto gameInstance = GetGameInstance<UMyGameInstance>())
+	{
+		if (!gameInstance->Client->Init())
+		{
+			UE_LOG(LogTemp, Fatal, TEXT("Failed to initialize client"));
+		}
+	}
+#endif // !UE_SERVER
 
 #if WITH_GAMELIFT
 	if (auto gameInstance = GetGameInstance<UMyGameInstance>())

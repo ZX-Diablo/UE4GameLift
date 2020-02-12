@@ -6,6 +6,7 @@
 #include "Engine/GameInstance.h"
 #include "MyGameInstance.generated.h"
 
+class UClient;
 class UServer;
 
 UCLASS()
@@ -19,4 +20,7 @@ public:
 public:
 	UPROPERTY(Transient)
 	UServer* Server;
+
+	UPROPERTY(Transient)
+	UClient* Client;
 };
