@@ -7,11 +7,13 @@
 
 #include "Client.h"
 #include "MyGameInstance.h"
+#include "MyPlayerController.h"
 #include "MyPlayerState.h"
 #include "Server.h"
 
 AUE4GameLiftGameMode::AUE4GameLiftGameMode()
 {
+	PlayerControllerClass = AMyPlayerController::StaticClass();
 	PlayerStateClass = AMyPlayerState::StaticClass();
 }
 
