@@ -6,6 +6,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
+#include "Misc/CommandLine.h"
 #include "TimerManager.h"
 
 #include "GameLiftClientApi.h"
@@ -16,7 +17,10 @@ DEFINE_LOG_CATEGORY_STATIC(LogClient, Log, All);
 bool UClient::Init()
 {
 	UE_LOG(LogClient, Log, TEXT("Initializing client..."));
-	GameLift = UGameLiftClientObject::CreateGameLiftObject(Key, Secret, Region);
+
+	bUsingGameLiftLocal = FParse::Param(FCommandLine::Get(), TEXT("local"));
+	GameLift = UGameLiftClientObject::CreateGameLiftObject(Key, Secret, Region, bUsingGameLiftLocal, 8080);
+
 	return GameLift != nullptr;
 }
 
@@ -25,7 +29,7 @@ bool UClient::HostSession()
 	FGameLiftCreateGameSessionConfig config;
 
 	config.SetMaxPlayerCount(2);
-	config.SetAliasId(AliasId);
+	config.SetFleetId(FleetId);
 
 	GameLiftCreateGameSession = GameLift->CreateGameSession(config);
 	if (!GameLiftCreateGameSession)
@@ -43,6 +47,11 @@ bool UClient::HostSession()
 
 bool UClient::TryJoinSession(const FString& SessionId)
 {
+	if (bUsingGameLiftLocal)
+	{
+		return JoinSession(SessionId);
+	}
+
 	GameLiftDescribeGameSessionDetails = GameLift->DescribeGameSessionDetails(SessionId);
 	if (!GameLiftDescribeGameSessionDetails)
 	{

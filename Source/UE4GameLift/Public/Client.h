@@ -78,7 +78,7 @@ private:
 	FString Region;
 
 	UPROPERTY(Config)
-	FString AliasId;
+	FString FleetId;
 
 	UPROPERTY()
 	UGameLiftCreateGameSession* GameLiftCreateGameSession;
@@ -88,4 +88,6 @@ private:
 
 	UPROPERTY()
 	UGameLiftCreatePlayerSession* GameLiftCreatePlayerSession;
+
+	bool bUsingGameLiftLocal;
 };
