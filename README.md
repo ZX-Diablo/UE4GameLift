@@ -1,6 +1,6 @@
 # UE4GameLift
 
-Unreal Engine 4 and Amazon GameLift integration. For more info see related blog article.
+Unreal Engine 4 and Amazon GameLift integration. For more info see related [blog article](https://artaxind.wordpress.com/2020/02/19/integrating-unreal-engine-with-amazon-gamelift-using-c/).
 
 ## Description
 

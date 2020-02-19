@@ -10,6 +10,6 @@ public class UE4GameLiftServerTarget : TargetRules
 	{
 		Type = TargetType.Server;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-        ExtraModuleNames.Add("UE4GameLift");
+		ExtraModuleNames.Add("UE4GameLift");
 	}
 }
